@@ -23,10 +23,9 @@ const Login = (props) => {
     }
 
     const onSubmitSuccess = () => {
-        const {history} = props 
-        Cookies.set("user_details",JSON.stringify(userDetails));
-
-        history.replace("/")
+        const {history} = props
+        Cookies.set("user_details",JSON.stringify(userDetails),{expires: 30});
+        history.push("/")
 
     }
 
