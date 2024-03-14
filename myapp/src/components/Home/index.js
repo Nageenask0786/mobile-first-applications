@@ -5,6 +5,7 @@ import { TailSpin } from "react-loader-spinner";
 import Header from "../Header";
 
 import "./index.css";
+import Filters from "../Filters";
 
 const apiStatusConstants = {
   initial: "INITIAL",
@@ -16,11 +17,23 @@ const apiStatusConstants = {
 const Home = () => {
   const [jokes, setJokes] = useState([]);
   const [apiStatus, setApiStatus] = useState(apiStatusConstants.initial);
+  const [language,setLanguage] = useState("en")
+  const [searchInput,setSearchText] = useState("")
+  const [category,setCategory] = useState("Any")
+  const changeCategory = (value) => {
+    setCategory(value)
+  }
+  const getSearchText = (value) => {
+    setSearchText(value)
+  }
+  const changeLanguage = (value) => {
+    setLanguage(value)
+  }
   useEffect(() => {
     const fetchJokes = async () => {
       try {
         setApiStatus(apiStatusConstants.inProgress);
-        const apiUrl = `https://v2.jokeapi.dev/joke/Any?amount=10`;
+        const apiUrl = `https://v2.jokeapi.dev/joke/${category}?amount=10&lang=${language}&contains=${searchInput}`;
         const response = await fetch(apiUrl);
         if (response.ok) {
           const data = await response.json();
@@ -49,12 +62,14 @@ const Home = () => {
       }
     };
     fetchJokes();
-  }, []);
+  }, [language,searchInput,category]);
 
   console.log(jokes);
 
   const renderSuccessView = () => (
-   
+    <div className="home-container d-flex flex-column justify-content-center align-items-center">
+<Filters language = {language} changeLanguage = {changeLanguage} category = {category} changeCategory = {changeCategory}/>
+
       <table>
         <thead>
           <tr>
@@ -71,11 +86,12 @@ const Home = () => {
           ))}
         </tbody>
       </table>
+      </div>
     
   );
 
   const renderLoadingView = () => (
-    <>
+    <div className="home-container d-flex justify-content-center align-items-center">
       <TailSpin
         visible={true}
         height="50"
@@ -83,7 +99,7 @@ const Home = () => {
         color="#0000FF"
         radius={2}
       />
-    </>
+    </div>
   );
 
   const renderFailureView = () => <>FAilure</>;
@@ -102,10 +118,10 @@ const Home = () => {
 
   return (
     <div className="home-route bg-white vh-100">
-      <Header />
-      <div className="home-container d-flex justify-content-center align-items-center">
+      <Header searchInput={searchInput} getSearchText = {getSearchText}/>
+      <>
         {renderFinalHomeView()}
-      </div>
+      </>
     </div>
   );
 };

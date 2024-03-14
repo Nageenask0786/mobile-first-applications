@@ -2,13 +2,11 @@ import { useState} from 'react'
 import Cookies from "js-cookie"
 
 import './index.css'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
-const Login = () => {
+const Login = (props) => {
     const [userName,setUserName] = useState("")
     const [password,setPassword] = useState("")
     const [errorMessage,setErrorMessage] = useState("")
-    const history = useHistory()
 
     const [showErrorMessage,setOrHideErrorMessage] = useState(false)
     const userDetails = {
@@ -25,9 +23,10 @@ const Login = () => {
     }
 
     const onSubmitSuccess = () => {
+        const {history} = props 
+        Cookies.set("user_details",JSON.stringify(userDetails));
 
-        Cookies.set("user_details",JSON.stringify(userDetails),{expires: 30});
-        history.push("/")
+        history.replace("/")
 
     }
 

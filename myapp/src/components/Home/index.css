@@ -28,6 +28,6 @@ table {
 }
 @media screen and (max-width : 576px) {
     table {
-    margin: 20px;
+    margin: 10px;
     }
 }

@@ -1,0 +1,12 @@
+.side-bar {
+    margin-left: auto;
+    width: 350px;
+    height: 100vh;
+    margin-top: 50px;
+    border-radius: 0px;
+}
+select {
+    width: 40%;
+    font-size: 14px;
+    margin-right: 10px;
+}
