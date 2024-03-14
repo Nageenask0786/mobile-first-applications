@@ -1,0 +1,45 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.header {
+    height: 70px;
+    position: fixed;
+    width: 100%;
+    background-color: #ffffff;
+    border: 1px solid #cddff2;
+    top: 0;
+   }
+.link {
+    text-decoration: none;
+}
+
+.header-items-container {
+    height: 100%;
+    width: 100%;
+}
+
+.item {
+    list-style-type: none;
+    font-family: "Roboto";
+    margin: 0px 30px;
+    font-size: 19px;
+    color: #000000;
+    font-weight: 600;
+}
+
+.logout-button {
+    font-size: 17px;
+    width: 100px;
+    margin: 0px 10px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+}
+
+@media screen and (max-width : 576px) {
+    .logout-button {
+        width: 80px;
+        font-size: 15px;
+    }
+}

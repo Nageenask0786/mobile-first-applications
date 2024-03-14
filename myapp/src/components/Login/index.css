@@ -1,0 +1,21 @@
+* {
+    font-family: "Roboto";
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+.cont {
+   border-radius: 10px;
+   box-shadow: 2px 2px 5px 5px #dde2f3;
+   margin: 20px;
+}
+.heading {
+    font-weight: bold;
+}
+
+input {
+    cursor: pointer;
+}
+.error-msg {
+    color: red;
+}
